@@ -1,0 +1,41 @@
+server:
+  port: 80
+  servlet:
+    #context-path:
+    session:
+      timeout: 7200
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/community?characterEncoding=utf-8&&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    #hibernate:
+    #  ddl-auto: create
+    #  use-new-id-generator-mappings: false
+
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  thymeleaf:
+    cache: false  #cache: 是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能。
+    enabled: false
+
+  resources:
+    static-locations: classpath:/static/
+
+  # 上传文件总的最大值
+  # 单个文件的最大值
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+mybatis:
+  mapper-locations: classpath*:/mapping/**/*.xml
+  type-aliases-package: com.wsl.entity
+

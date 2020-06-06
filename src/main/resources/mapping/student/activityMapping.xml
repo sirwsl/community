@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis. org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.mapper.student.activityMapper">
+
+
+    <!--增加活动-->
+    <update id="addAcivity" parameterType="activit">
+        insert into  activit(com_id,name,date,fist_date,last_date,pla_id,number,rang,theme
+        ,intros,know,peo_id,plan_path,rates)
+        value (#{activit.com_id},#{activit.name},#{activit.date},#{activit.fist_date},#{activit.last_date},#{activit.pla_id},
+        #{activit.number},#{activit.rang},#{activit.theme},#{activit.intros},#{activit.know},#{activit.peo_id}
+        ,#{activit.plan_path},0);
+    </update>
+
+    <select id="findActivity" resultType="com.wsl.entity.activit" parameterType="map">
+        select * from meets where com_id = #{id}
+            limit #{map.startIndex},#{map.pageSize}
+    </select>
+
+    <select id="findActivityPlan" resultType="com.wsl.entity.activit" parameterType="map">
+    select * from meets where com_id = #{id} and rates=#{rates}
+            limit #{map.startIndex},#{map.pageSize}
+    </select>
+
+    <select id="findActivityName" resultType="com.wsl.entity.activit" parameterType="map">
+    select * from meets where com_id = #{id} and name like "%"#{name}"%"
+    limit #{map.startIndex},#{map.pageSize}
+    </select>
+
+</mapper>

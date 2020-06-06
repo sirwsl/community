@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis. org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.mapper.student.goodsMapper">
+
+
+    <!--增加固定资产-->
+    <update id="addGoods" parameterType="goods">
+        insert into goods(date,name,number,peo_id,type,com_id)
+        value (#{goods.date},#{goods.name},#{goods.number},#{goods.peo_id},#{goods.type},#{goods.com_id})
+    </update>
+
+    <select id="findGoods" resultType="com.alibaba.fastjson.JSONObject" parameterType="map">
+    select g.id,g.name,g.number,g.date,g.type,p.name as pname
+        from (select * from goods where com_id=#{id}) as g
+    inner join people p on g.peo_id=p.id
+    limit #{map.startIndex},#{map.pageSize}
+    </select>
+
+
+</mapper>

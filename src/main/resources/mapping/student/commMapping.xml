@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis. org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.mapper.student.commMapper">
+
+
+    <!--社团基本资料获取-->
+    <select id="getComm" resultType="com.wsl.entity.comm">
+    select * from comm where id = #{id}
+    </select>
+
+    <!--学生社团信息修改-->
+    <update id="setComm" parameterType="Integer">
+    update comm set adress = #{comm.adress},intro = #{comm.intro},
+    type = #{comm.type} where id = #{comm.id}
+    </update>
+
+
+
+</mapper>

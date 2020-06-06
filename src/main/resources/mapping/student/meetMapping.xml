@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis. org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.mapper.student.meetMapper">
+
+
+    <!--增加会议-->
+    <update id="addMetting" parameterType="meets">
+        insert into meets (adress,date,number,path,persion,text,theme,type,com_id)
+        value (#{met.adress},#{met.date},#{met.number},#{met.path},#{met.persion},#{met.text},#{met.theme},#{met.type},#{met.com_id})
+    </update>
+
+    <select id="findMeets" parameterType="map" resultType="com.wsl.entity.meets">
+    select * from meets where com_id = #{id}
+    limit #{map.startIndex},#{map.pageSize}
+    </select>
+
+
+
+<!--
+<resultMap id="meet" type="User">
+<id column="id" property="id"/>
+   <result column="name" property="name"/>
+</resultMap>
+-->
+</mapper>

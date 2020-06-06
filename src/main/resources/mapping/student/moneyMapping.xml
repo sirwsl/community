@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis. org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.mapper.student.moneyMapper">
+
+
+    <!--会费收入支出记录-->
+    <update id="addMoney" parameterType="Integer">
+        insert into(com_id,date,in_out,money,note,peo_id)
+        value (#{money.com_id},#{money.date},#{money.in_out},#{money.money},#{money.note},#{money.peo_id})
+    </update>
+    <update id="upMoney" parameterType="Integer">
+        update comm set money = money+#{num}
+        where id = #{id};
+    </update>
+
+    <update id="downMoney" parameterType="Integer">
+        update comm set money = money-#{num}
+        where id = #{id};
+    </update>
+
+    <select id="findMoney" resultType="com.alibaba.fastjson.JSONObject" parameterType="map">
+    select m.id,p.name,m.date,m.in_out,m.money,m.note
+        from (select * from money where com_id=#{id}) as m
+    inner join people p on m.peo_id=p.id
+    limit #{map.startIndex},#{map.pageSize}
+    </select>
+</mapper>

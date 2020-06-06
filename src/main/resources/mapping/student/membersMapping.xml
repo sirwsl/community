@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis. org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.mapper.student.membersMapper">
+    <!--总数+1-->
+    <update id="addOne" parameterType="comm">
+        update comm set sum=sum+1;
+    </update>
+    <!--总数-1减少-->
+    <update id="reduceOne" parameterType="comm">
+        update comm set sum=sum-1;
+    </update>
+
+    <!--增加会员-->
+    <update id="addmembers" parameterType="members">
+        insert into  members (password,comm_id,name,number,grad,class_name,phone,wx,date)
+        value ('123456',#{m.comm_id},#{m.name},#{m.number},
+        #{m.grad},#{m.class_name}
+        ,#{m.phone},#{m.wx},#{m.date});
+    </update>
+
+    <select id="findMembers" resultType="com.wsl.entity.members" parameterType="map">
+        select * from members where com_id = #{id}
+        limit #{map.startIndex},#{map.pageSize}
+    </select>
+
+    <select id="getMenbers" resultType="com.wsl.entity.members">
+        select * from where com_id = #{id} and name like "%"#{name}"%"
+    </select>
+</mapper>
