@@ -22,8 +22,8 @@ public class smsValidat {
     //这个不用改
     private String apiUrl = "https://sms_developer.zhenzikj.com";
     //榛子云系统上获取
-    private String appId = "105924";
-    private String appSecret = "caa68ca4-6c06-459b-bada-d32d6c19388f";
+    private String appId = "1024";
+    private String appSecret = "caa68ca4-6c06-4asb-bada-d32d6c19388f";
 
     public JSONObject getCode(String memPhone){
         JSONObject json = new JSONObject();
